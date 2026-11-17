@@ -1,0 +1,32 @@
+
+version: 0.2
+
+phases:
+
+  # PHASE 1: INSTALL
+  install:
+    commands:
+      - echo "Installing NGINX"
+      - apt-get update
+      - apt-get install -y nginx
+
+  # PHASE 2: BUILD
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Preparing website files"
+      - ls -la
+      - mkdir -p output
+      - cp index.html output/index.html
+
+  # PHASE 3: POST BUILD
+  post_build:
+    commands:
+      - echo "Build completed successfully"
+      - echo "Website artifact prepared"
+
+# ARTIFACTS
+artifacts:
+  base-directory: output
+  files:
+    - index.html
